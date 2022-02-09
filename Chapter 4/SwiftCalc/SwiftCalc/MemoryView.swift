@@ -33,9 +33,21 @@ struct MemoryView: View {
   var geometry: GeometryProxy
 
   var body: some View {
+#if targetEnvironment(macCatalyst)
+    let memoryTap = TapGesture(count: 2)
+      .onEnded { _ in
+        memory = 0.0
+      }
+#else
+    let memorySwipe = DragGesture(minimumDistance: 20)
+      .onEnded { _ in
+        memory = 0.0
+      }
+#endif
     HStack {
       Spacer()
       Text("\(memory)")
+        .accessibility(identifier: "memoryDisplay")
         .padding(.horizontal, 5)
         .frame(
           width: geometry.size.width * 0.85,
@@ -46,7 +58,11 @@ struct MemoryView: View {
             .stroke(lineWidth: 2)
             .foregroundColor(Color.gray)
         )
-      // Add gesture here
+#if targetEnvironment(macCatalyst)
+        .gesture(memoryTap)
+#else
+        .gesture(memorySwipe)
+#endif
       Text("M")
     }.padding(.bottom).padding(.horizontal, 5)
   }
