@@ -32,79 +32,24 @@
 
 import SwiftUI
 
-struct RegisterView: View {
-
-  @EnvironmentObject var userManager: UserManager
-  @FocusState var nameFieldFocused: Bool
-
+struct ScoreView: View {
+  
+  @State var numberOfAnswered = 0
+  let numberOfQuestions: Int
+  
   var body: some View {
-    VStack {
-      Spacer()
-      WelcomeMessageView()
-      TextField("Type your name...", text: $userManager.profile.name)
-        .focused($nameFieldFocused)
-        .submitLabel(.done)
-        .onSubmit(registerUser)
-        .bordered()
       HStack {
-        Spacer()
-        Text("\(userManager.profile.name.count)")
+        Text("\(numberOfAnswered)/\(numberOfQuestions)")
           .font(.caption)
-          .foregroundColor(userManager.isUserNameValid() ? .green : .red)
-          .padding(.trailing)
-      }
-      .padding(.bottom)
-      HStack {
+          .padding(4)
         Spacer()
-        Toggle(isOn: $userManager.settings.rememberUser) {
-          Text("Remember me")
-            .font(.subheadline)
-            .foregroundColor(.gray)
-        }
-        .fixedSize()
-      }
-      Button(action: registerUser) {
-        HStack {
-          Image(systemName: "checkmark")
-            .resizable()
-            .frame(width: 16, height: 16, alignment: .center)
-          Text("OK")
-            .font(.body)
-            .bold()
-        }
-      }
-      .bordered()
-      .disabled(!userManager.isUserNameValid())
-      Spacer()
     }
-    .padding()
-    .background(WelcomeBackgroundImage())
   }
 }
 
-// MARK: - Event Handlers
-
-extension RegisterView {
-
-  func registerUser() {
-    nameFieldFocused = false
-
-    if userManager.settings.rememberUser {
-      userManager.persistProfile()
-    } else {
-      userManager.clear()
-    }
-    userManager.persistSettings()
-    userManager.setRegistered()
-  }
-}
-
-struct RegisterView_Previews: PreviewProvider {
-  static let user = UserManager(name: "Ray")
-
+struct ScoreView_Previews: PreviewProvider {
+  @State static var numberOfAnswered: Int = 0
   static var previews: some View {
-    RegisterView()
-      .previewInterfaceOrientation(.landscapeRight)
-      .environmentObject(user)
+    ScoreView(numberOfQuestions: 5)
   }
 }
