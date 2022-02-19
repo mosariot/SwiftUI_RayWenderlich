@@ -35,6 +35,7 @@ import SwiftUI
 struct ChallengeView: View {
   
   let challengeTest: ChallengeTest
+  @Binding var numberOfAnswered: Int
   
   @State var showAnswers = false
   
@@ -46,7 +47,7 @@ struct ChallengeView: View {
         QuestionView(question: challengeTest.challenge.question)
           .frame(height: 300)
       }
-      ScoreView(numberOfQuestions: 5)
+      ScoreView(numberOfQuestions: 5, numberOfAnswered: $numberOfAnswered)
       if showAnswers {
         Divider()
         ChoicesView(challengeTest: challengeTest)
@@ -59,12 +60,14 @@ struct ChallengeView: View {
 
 struct ChallengeView_Previews: PreviewProvider {
   
+  @State static var numberOfAnswered: Int = 0
+  
   static let challengeTest = ChallengeTest(
     challenge: Challenge(question: "おねがい　します",
                          pronunciation: "Onegai shimasu", answer: "Please"),
     answers: ["Thank you", "Hello", "Goodbye"])
   
   static var previews: some View {
-    ChallengeView(challengeTest: challengeTest)
+    ChallengeView(challengeTest: challengeTest, numberOfAnswered: $numberOfAnswered)
   }
 }
