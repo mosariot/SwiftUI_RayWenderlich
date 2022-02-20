@@ -36,23 +36,43 @@ struct ChallengeView: View {
   
   let challengeTest: ChallengeTest
   @Binding var numberOfAnswered: Int
+  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @Environment(\.questionsPerSession) var questionsPerSession
   
   @State var showAnswers = false
   
   var body: some View {
-    VStack {
-      Button(action: {
-        showAnswers.toggle()
-      }) {
-        QuestionView(question: challengeTest.challenge.question)
-          .frame(height: 300)
+    if verticalSizeClass == .compact {
+      VStack {
+        HStack {
+          Button(action: {
+            showAnswers.toggle()
+          }) {
+            QuestionView(question: challengeTest.challenge.question)
+              .frame(height: 300)
+          }
+          if showAnswers {
+            Divider()
+            ChoicesView(challengeTest: challengeTest)
+          }
+        }
+        ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
       }
-      ScoreView(numberOfQuestions: 5, numberOfAnswered: $numberOfAnswered)
-      if showAnswers {
-        Divider()
-        ChoicesView(challengeTest: challengeTest)
-          .frame(height: 300)
-          .padding()
+    } else {
+      VStack {
+        Button(action: {
+          showAnswers.toggle()
+        }) {
+          QuestionView(question: challengeTest.challenge.question)
+            .frame(height: 300)
+        }
+        ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
+        if showAnswers {
+          Divider()
+          ChoicesView(challengeTest: challengeTest)
+            .frame(height: 300)
+            .padding()
+        }
       }
     }
   }
@@ -69,5 +89,6 @@ struct ChallengeView_Previews: PreviewProvider {
   
   static var previews: some View {
     ChallengeView(challengeTest: challengeTest, numberOfAnswered: $numberOfAnswered)
+      .previewInterfaceOrientation(.portraitUpsideDown)
   }
 }
