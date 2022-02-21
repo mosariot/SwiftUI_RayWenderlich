@@ -47,9 +47,9 @@ extension Color {
     let components = cgColor!.components!
     let (r, g, b, a) = (components[0], components[1], components[2], components[3])
     return
-    (Int(a * 255) << 0) +
-    (Int(b * 255) << 8) +
-    (Int(g * 255) << 16) +
-    (Int(r * 255) << 24)
+      (Int(a * 255) << 0) +
+      (Int(b * 255) << 8) +
+      (Int(g * 255) << 16) +
+      (Int(r * 255) << 24)
   }
 }
