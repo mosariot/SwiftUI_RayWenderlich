@@ -34,10 +34,13 @@ import SwiftUI
 
 struct SettingsView: View {
   
-  @State var numberOfQuestions = 6
+  @AppStorage("numberOfQuestions") var numberOfQuestions = 6
   @State var learningEnabled = true
-  @State var dailyReminderEnabled = false
+  @AppStorage("dailyReminderEnabled") var dailyReminderEnabled = false
   @State var dailyReminderTime = Date(timeIntervalSince1970: 0)
+  @AppStorage("dailyReminderTime") var dailyReminderTimeShadow: Double = 0
+  @State var cardBackgroundColor: Color = .red
+  @AppStorage("appearance") var appearance: Appearance = .automatic
   
   var body: some View {
     List {
@@ -46,7 +49,15 @@ struct SettingsView: View {
         .padding(.bottom, 8)
       
       Section(header: Text("Appearance")) {
-        
+        VStack {
+          Picker("", selection: $appearance) {
+            ForEach(Appearance.allCases) { appearance in
+              Text(appearance.name).tag(appearance)
+            }
+          }
+          .pickerStyle(SegmentedPickerStyle())
+          ColorPicker("Card Background Color", selection: $cardBackgroundColor)
+        }
       }
       
       Section(header: Text("Game")) {
@@ -65,7 +76,12 @@ struct SettingsView: View {
             .onChange(of: dailyReminderEnabled) { _ in configureNotification() }
           DatePicker("", selection: $dailyReminderTime, displayedComponents: .hourAndMinute)
             .disabled(dailyReminderEnabled == false)
-            .onChange(of: dailyReminderTime) { _ in configureNotification() }
+            .onChange(of: dailyReminderTime) { newValue in
+              dailyReminderTimeShadow = newValue.timeIntervalSince1970
+              configureNotification() }
+            .onAppear {
+              dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
+            }
         }
       }
     }

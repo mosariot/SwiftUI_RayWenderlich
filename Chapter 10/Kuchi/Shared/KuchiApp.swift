@@ -35,6 +35,7 @@ import SwiftUI
 @main
 struct KuchiApp: App {
   let userManager = UserManager()
+  @AppStorage("appearance") var appearance: Appearance = .automatic
   
   init() {
     userManager.load()
@@ -42,19 +43,20 @@ struct KuchiApp: App {
   
   var body: some Scene {
     WindowGroup {
-      SettingsView()
+      StarterView()
         .environmentObject(userManager)
         .environmentObject(ChallengesViewModel())
+        .preferredColorScheme(appearance.getColorScheme())
     }
   }
 }
 
 struct KuchiApp_Previews: PreviewProvider {
-  static let user = UserManager(name: "Ray")
+  static let userManager = UserManager(name: "Ray")
   
   static var previews: some View {
-    RegisterView()
-      .previewInterfaceOrientation(.landscapeRight)
-      .environmentObject(user)
+    StarterView()
+      .environmentObject(userManager)
+      .environmentObject(ChallengesViewModel())
   }
 }

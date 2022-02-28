@@ -37,7 +37,7 @@ struct ChallengeView: View {
   let challengeTest: ChallengeTest
   @Binding var numberOfAnswered: Int
   @Environment(\.verticalSizeClass) var verticalSizeClass
-  @Environment(\.questionsPerSession) var questionsPerSession
+  @AppStorage("numberOfQuestions") var numberOfQuestions = 6
   
   @State var showAnswers = false
   
@@ -56,7 +56,7 @@ struct ChallengeView: View {
             ChoicesView(challengeTest: challengeTest)
           }
         }
-        ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
+        ScoreView(numberOfQuestions: $numberOfQuestions, numberOfAnswered: $numberOfAnswered)
       }
     } else {
       VStack {
@@ -66,7 +66,7 @@ struct ChallengeView: View {
           QuestionView(question: challengeTest.challenge.question)
             .frame(height: 300)
         }
-        ScoreView(numberOfQuestions: questionsPerSession, numberOfAnswered: $numberOfAnswered)
+        ScoreView(numberOfQuestions: $numberOfQuestions, numberOfAnswered: $numberOfAnswered)
         if showAnswers {
           Divider()
           ChoicesView(challengeTest: challengeTest)
