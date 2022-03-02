@@ -45,6 +45,18 @@
 		9F72AFF127C268550008927D /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFEB27C268550008927D /* Appearance.swift */; };
 		9F72AFF427C3C9800008927D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF327C3C9800008927D /* SettingsView.swift */; };
 		9F72AFF527C3C9800008927D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF327C3C9800008927D /* SettingsView.swift */; };
+		9F72AFF827CE45700008927D /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF727CE45700008927D /* LearnView.swift */; };
+		9F72AFFA27CE476F0008927D /* FlashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF927CE476F0008927D /* FlashCard.swift */; };
+		9F72AFFC27CE48C20008927D /* FlashDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFB27CE48C20008927D /* FlashDeck.swift */; };
+		9F72AFFE27CE4A720008927D /* LearningStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFD27CE4A710008927D /* LearningStore.swift */; };
+		9F72B00027CE4CEA0008927D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFF27CE4CEA0008927D /* CardView.swift */; };
+		9F72B00127CE4CEA0008927D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFF27CE4CEA0008927D /* CardView.swift */; };
+		9F72B00227CE4CF00008927D /* LearningStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFD27CE4A710008927D /* LearningStore.swift */; };
+		9F72B00327CE4CF20008927D /* FlashDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFFB27CE48C20008927D /* FlashDeck.swift */; };
+		9F72B00427CE4CF40008927D /* FlashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF927CE476F0008927D /* FlashCard.swift */; };
+		9F72B00527CE4CF90008927D /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72AFF727CE45700008927D /* LearnView.swift */; };
+		9F72B00727CE4E8D0008927D /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72B00627CE4E8D0008927D /* DeckView.swift */; };
+		9F72B00827CE4E8D0008927D /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72B00627CE4E8D0008927D /* DeckView.swift */; };
 		9FA2EB1F27B6CD3700C05BB4 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA2EB1827B6CD3700C05BB4 /* QuestionView.swift */; };
 		9FA2EB2027B6CD3700C05BB4 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA2EB1827B6CD3700C05BB4 /* QuestionView.swift */; };
 		9FA2EB2127B6CD3700C05BB4 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA2EB1927B6CD3700C05BB4 /* ChallengeView.swift */; };
@@ -92,6 +104,12 @@
 		9F72AFEA27C268550008927D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		9F72AFEB27C268550008927D /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		9F72AFF327C3C9800008927D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9F72AFF727CE45700008927D /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		9F72AFF927CE476F0008927D /* FlashCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCard.swift; sourceTree = "<group>"; };
+		9F72AFFB27CE48C20008927D /* FlashDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashDeck.swift; sourceTree = "<group>"; };
+		9F72AFFD27CE4A710008927D /* LearningStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningStore.swift; sourceTree = "<group>"; };
+		9F72AFFF27CE4CEA0008927D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		9F72B00627CE4E8D0008927D /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		9FA2EB1827B6CD3700C05BB4 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		9FA2EB1927B6CD3700C05BB4 /* ChallengeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		9FA2EB1A27B6CD3700C05BB4 /* CongratulationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CongratulationsView.swift; sourceTree = "<group>"; };
@@ -159,6 +177,7 @@
 				57578FA724E9D943003465A4 /* HomeView.swift */,
 				57EF340024E89F91004ABEB2 /* KuchiApp.swift */,
 				9FA2EB2E27B6CDAD00C05BB4 /* StarterView.swift */,
+				9F72AFF627CE45510008927D /* Learn */,
 				9FA2EB1727B6CD2200C05BB4 /* Practice */,
 				9F2E6A6827B5459300D813DD /* Profile */,
 				57578FA924E9D943003465A4 /* Resources */,
@@ -233,6 +252,19 @@
 				9F72AFF327C3C9800008927D /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		9F72AFF627CE45510008927D /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				9F72AFFF27CE4CEA0008927D /* CardView.swift */,
+				9F72B00627CE4E8D0008927D /* DeckView.swift */,
+				9F72AFF927CE476F0008927D /* FlashCard.swift */,
+				9F72AFFB27CE48C20008927D /* FlashDeck.swift */,
+				9F72AFFD27CE4A710008927D /* LearningStore.swift */,
+				9F72AFF727CE45700008927D /* LearnView.swift */,
+			);
+			path = Learn;
 			sourceTree = "<group>";
 		};
 		9FA2EB1727B6CD2200C05BB4 /* Practice */ = {
@@ -370,6 +402,7 @@
 				9FE5C4F527B3F925006AD189 /* WelcomeView.swift in Sources */,
 				9FA2EB2727B6CD3700C05BB4 /* ChoicesRow.swift in Sources */,
 				9F72AFEE27C268550008927D /* Color+Extension.swift in Sources */,
+				9F72B00027CE4CEA0008927D /* CardView.swift in Sources */,
 				9F72AFE627BD587A0008927D /* ScoreView.swift in Sources */,
 				9F72AFEC27C268550008927D /* LocalNotifications.swift in Sources */,
 				9F2AA04327B53487002BCBE2 /* HorizontallyAlignedLabelStyle.swift in Sources */,
@@ -377,16 +410,21 @@
 				9FA2EB1F27B6CD3700C05BB4 /* QuestionView.swift in Sources */,
 				9F2E6A7027B545AE00D813DD /* Settings.swift in Sources */,
 				9F2E6A6327B53AAF00D813DD /* RegisterView.swift in Sources */,
+				9F72AFF827CE45700008927D /* LearnView.swift in Sources */,
 				57578FDE24E9D943003465A4 /* HomeView.swift in Sources */,
 				9FA2EB2927B6CD3700C05BB4 /* ChallengesViewModel.swift in Sources */,
+				9F72AFFE27CE4A720008927D /* LearningStore.swift in Sources */,
 				9FA2EB3127B6CDAD00C05BB4 /* StarterView.swift in Sources */,
 				9FA2EB2327B6CD3700C05BB4 /* CongratulationsView.swift in Sources */,
 				9FA2EB2127B6CD3700C05BB4 /* ChallengeView.swift in Sources */,
 				9F2E6A6E27B545AE00D813DD /* Profile.swift in Sources */,
 				9FA2EB2F27B6CDAD00C05BB4 /* HistoryView.swift in Sources */,
 				9F2E6A6C27B545AE00D813DD /* UserManager.swift in Sources */,
+				9F72B00727CE4E8D0008927D /* DeckView.swift in Sources */,
 				9F2E6A6027B539CC00D813DD /* WelcomeMessageView.swift in Sources */,
+				9F72AFFA27CE476F0008927D /* FlashCard.swift in Sources */,
 				9F72AFF427C3C9800008927D /* SettingsView.swift in Sources */,
+				9F72AFFC27CE48C20008927D /* FlashDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,11 +433,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FA2EB2C27B6CD3700C05BB4 /* ChoicesView.swift in Sources */,
+				9F72B00127CE4CEA0008927D /* CardView.swift in Sources */,
 				9F2E6A5E27B5399700D813DD /* LogoImage.swift in Sources */,
 				9F2E6A5B27B538B800D813DD /* WelcomeBackgroundImage.swift in Sources */,
 				57EF341424E89F92004ABEB2 /* KuchiApp.swift in Sources */,
 				9FA2EB2627B6CD3700C05BB4 /* PracticeView.swift in Sources */,
 				9F72AFF127C268550008927D /* Appearance.swift in Sources */,
+				9F72B00527CE4CF90008927D /* LearnView.swift in Sources */,
 				9FE5C4F627B3F925006AD189 /* WelcomeView.swift in Sources */,
 				9FA2EB2827B6CD3700C05BB4 /* ChoicesRow.swift in Sources */,
 				9F72AFEF27C268550008927D /* Color+Extension.swift in Sources */,
@@ -408,6 +448,7 @@
 				9F2AA04427B53487002BCBE2 /* HorizontallyAlignedLabelStyle.swift in Sources */,
 				9F2E6A6727B540FE00D813DD /* BorderedViewModifier.swift in Sources */,
 				9FA2EB2027B6CD3700C05BB4 /* QuestionView.swift in Sources */,
+				9F72B00227CE4CF00008927D /* LearningStore.swift in Sources */,
 				9F2E6A7127B545AE00D813DD /* Settings.swift in Sources */,
 				9F2E6A6427B53AAF00D813DD /* RegisterView.swift in Sources */,
 				57578FDF24E9D943003465A4 /* HomeView.swift in Sources */,
@@ -416,10 +457,13 @@
 				9FA2EB2427B6CD3700C05BB4 /* CongratulationsView.swift in Sources */,
 				9FA2EB2227B6CD3700C05BB4 /* ChallengeView.swift in Sources */,
 				9F2E6A6F27B545AE00D813DD /* Profile.swift in Sources */,
+				9F72B00427CE4CF40008927D /* FlashCard.swift in Sources */,
 				9FA2EB3027B6CDAD00C05BB4 /* HistoryView.swift in Sources */,
+				9F72B00827CE4E8D0008927D /* DeckView.swift in Sources */,
 				9F2E6A6D27B545AE00D813DD /* UserManager.swift in Sources */,
 				9F2E6A6127B539CC00D813DD /* WelcomeMessageView.swift in Sources */,
 				9F72AFF527C3C9800008927D /* SettingsView.swift in Sources */,
+				9F72B00327CE4CF20008927D /* FlashDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

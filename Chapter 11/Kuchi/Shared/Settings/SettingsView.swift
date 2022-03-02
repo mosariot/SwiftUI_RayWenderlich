@@ -35,10 +35,11 @@ import SwiftUI
 struct SettingsView: View {
   
   @AppStorage("numberOfQuestions") var numberOfQuestions = 6
-  @State var learningEnabled = true
+  @AppStorage("learningEnabled") var learningEnabled = true
   @AppStorage("dailyReminderEnabled") var dailyReminderEnabled = false
   @State var dailyReminderTime = Date(timeIntervalSince1970: 0)
   @AppStorage("dailyReminderTime") var dailyReminderTimeShadow: Double = 0
+  @AppStorage("cardBackgroundColor") var cardBackgroundColorInt: Int = 0xFF000FF
   @State var cardBackgroundColor: Color = .red
   @AppStorage("appearance") var appearance: Appearance = .automatic
   
@@ -81,6 +82,10 @@ struct SettingsView: View {
               configureNotification() }
             .onAppear {
               dailyReminderTime = Date(timeIntervalSince1970: dailyReminderTimeShadow)
+              cardBackgroundColor = Color(rgba: cardBackgroundColorInt)
+            }
+            .onChange(of: cardBackgroundColor) { newValue in
+              cardBackgroundColorInt = newValue.asRgba
             }
         }
       }
