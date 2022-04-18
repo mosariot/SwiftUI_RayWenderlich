@@ -30,74 +30,37 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct SuccessView: View {
-  @ScaledMetric var imageSize: CGFloat = 80
-  @Environment(\.presentationMode) var presentationMode
-  @Binding var game: Game
-  let score: Int
-  let target: RGB
-  @Binding var guess: RGB
+struct RGB {
+  var red = 0.5
+  var green = 0.5
+  var blue = 0.5
 
-  var body: some View {
-    ZStack {
-      VStack {
-        Image("wand")
-          .resizable()
-          .frame(width: imageSize, height: imageSize)
-        Text("Congratulations!")
-          .font(.largeTitle)
-          .fontWeight(.semibold)
-          .padding(.bottom)
-        VStack(spacing: 10) {
-          Text("You scored \(score) points on this color.")
-            .padding(.bottom)
-          ColorText(
-            text: "Target: " + target.intString,
-            bkgd: Color(rgbStruct: target))
-          ColorText(
-            text: "Guess: " + guess.intString,
-            bkgd: Color(rgbStruct: guess))
-        }
-        .font(.title3)
-        .foregroundColor(Color("grayText"))
-        .multilineTextAlignment(.center)
-      }
-      VStack(spacing: 20) {
-        Spacer()
-        Button("Try another one?") {
-          game.startNewRound()
-          guess = RGB()
-          presentationMode.wrappedValue.dismiss()
-        }
-          .buttonStyle(
-            NewButtonStyle(width: 327, height: 48)
-        )
-      }
-    }
+  /// Create an RGB object with random values.
+  static func random() -> RGB {
+    var rgb = RGB()
+    rgb.red = Double.random(in: 0..<1)
+    rgb.green = Double.random(in: 0..<1)
+    rgb.blue = Double.random(in: 0..<1)
+    return rgb
   }
-}
 
-struct ColorText: View {
-  let text: String
-  let bkgd: Color
-
-  var body: some View {
-    Text(text)
-      .padding(10)
-      .background(Capsule().fill(bkgd))
-      .foregroundColor(bkgd.accessibleFontColor)
-      .font(.footnote)
+  /// Compute the normalized 3-dimensional distance to another RGB object.
+  ///   - parameters:
+  ///     - target: The other RGB object.
+  func difference(target: RGB) -> Double {
+    let rDiff = red - target.red
+    let gDiff = green - target.green
+    let bDiff = blue - target.blue
+    return sqrt(
+      (rDiff * rDiff + gDiff * gDiff + bDiff * bDiff) / 3.0)
   }
-}
 
-struct SuccessView_Previews: PreviewProvider {
-  static var previews: some View {
-    SuccessView(
-      game: .constant(Game()),
-      score: 95,
-      target: RGB(),
-      guess: .constant(RGB()))
+  /// A String representing the integer values of an RGB instance.
+  var intString: String {
+    "R \(Int(red * 255.0))"
+      + "  G \(Int(green * 255.0))"
+      + "  B \(Int(blue * 255.0))"
   }
 }

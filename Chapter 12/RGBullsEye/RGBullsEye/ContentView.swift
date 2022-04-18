@@ -1,15 +1,15 @@
 /// Copyright (c) 2021 Razeware LLC
-/// 
+///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-/// 
+///
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-/// 
+///
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-/// 
+///
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -32,72 +32,61 @@
 
 import SwiftUI
 
-struct SuccessView: View {
-  @ScaledMetric var imageSize: CGFloat = 80
-  @Environment(\.presentationMode) var presentationMode
-  @Binding var game: Game
-  let score: Int
-  let target: RGB
-  @Binding var guess: RGB
-
+struct ContentView: View {
+  @State var game = Game()
+  @State var guess: RGB
+  @State var showScore = false
+  
+  let circleSize: CGFloat = 0.275
+  let labelHeight: CGFloat = 0.06
+  let labelWidth: CGFloat = 0.53
+  let buttonWidth: CGFloat = 0.87
+  
   var body: some View {
-    ZStack {
-      VStack {
-        Image("wand")
-          .resizable()
-          .frame(width: imageSize, height: imageSize)
-        Text("Congratulations!")
-          .font(.largeTitle)
-          .fontWeight(.semibold)
-          .padding(.bottom)
-        VStack(spacing: 10) {
-          Text("You scored \(score) points on this color.")
-            .padding(.bottom)
-          ColorText(
-            text: "Target: " + target.intString,
-            bkgd: Color(rgbStruct: target))
-          ColorText(
-            text: "Guess: " + guess.intString,
-            bkgd: Color(rgbStruct: guess))
+    GeometryReader { proxy in
+      ZStack {
+        Color.element
+          .edgesIgnoringSafeArea(.all)
+        VStack {
+          ColorCircle(rgb: game.target, size: proxy.size.height * circleSize)
+          if !showScore {
+            BevelText(text: "R: ??? G: ??? B: ???", width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
+          } else {
+            BevelText(text: game.target.intString, width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
+          }
+          ColorCircle(rgb: guess, size: proxy.size.height * circleSize)
+          BevelText(text: guess.intString, width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
+          ColorSlider(value: $guess.red, trackColor: .red)
+          ColorSlider(value: $guess.green, trackColor: .green)
+          ColorSlider(value: $guess.blue, trackColor: .blue)
+          Button("Hit Me!") {
+            self.showScore = true
+            self.game.check(guess: guess)
+          }
+          .buttonStyle(NewButtonStyle(width: proxy.size.width * buttonWidth, height: proxy.size.height * labelHeight))
+          .alert(isPresented: $showScore) {
+            Alert(
+              title: Text("Your Score"),
+              message: Text(String(game.scoreRound)),
+              dismissButton: .default(Text("OK")) {
+                self.game.startNewRound()
+                self.guess = RGB()
+              })
+          }
         }
-        .font(.title3)
-        .foregroundColor(Color("grayText"))
-        .multilineTextAlignment(.center)
-      }
-      VStack(spacing: 20) {
-        Spacer()
-        Button("Try another one?") {
-          game.startNewRound()
-          guess = RGB()
-          presentationMode.wrappedValue.dismiss()
-        }
-          .buttonStyle(
-            NewButtonStyle(width: 327, height: 48)
-        )
+        .font(.headline)
       }
     }
   }
 }
 
-struct ColorText: View {
-  let text: String
-  let bkgd: Color
-
-  var body: some View {
-    Text(text)
-      .padding(10)
-      .background(Capsule().fill(bkgd))
-      .foregroundColor(bkgd.accessibleFontColor)
-      .font(.footnote)
-  }
-}
-
-struct SuccessView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    SuccessView(
-      game: .constant(Game()),
-      score: 95,
-      target: RGB(),
-      guess: .constant(RGB()))
+    Group {
+      ContentView(guess: RGB())
+        .previewDevice("iPhone 8")
+      ContentView(guess: RGB())
+    }
   }
 }
+
