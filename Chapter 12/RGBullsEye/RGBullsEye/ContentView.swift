@@ -51,27 +51,28 @@ struct ContentView: View {
           ColorCircle(rgb: game.target, size: proxy.size.height * circleSize)
           if !showScore {
             BevelText(text: "R: ??? G: ??? B: ???", width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
+              .accessibilityLabel("Target red, green, blue, values you must guess")
           } else {
             BevelText(text: game.target.intString, width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
           }
           ColorCircle(rgb: guess, size: proxy.size.height * circleSize)
           BevelText(text: guess.intString, width: proxy.size.width * labelWidth, height: proxy.size.height * labelHeight)
+            .accessibilityLabel("Your guess: " + guess.accString)
+            .accessibilitySortPriority(2)
           ColorSlider(value: $guess.red, trackColor: .red)
+            .accessibilitySortPriority(5)
           ColorSlider(value: $guess.green, trackColor: .green)
+            .accessibilitySortPriority(4)
           ColorSlider(value: $guess.blue, trackColor: .blue)
+            .accessibilitySortPriority(3)
           Button("Hit Me!") {
             self.showScore = true
             self.game.check(guess: guess)
           }
+          .accessibilitySortPriority(1)
           .buttonStyle(NewButtonStyle(width: proxy.size.width * buttonWidth, height: proxy.size.height * labelHeight))
-          .alert(isPresented: $showScore) {
-            Alert(
-              title: Text("Your Score"),
-              message: Text(String(game.scoreRound)),
-              dismissButton: .default(Text("OK")) {
-                self.game.startNewRound()
-                self.guess = RGB()
-              })
+          .sheet(isPresented: $showScore) {
+            SuccessView(game: $game, score: game.scoreRound, target: game.target, guess: $guess)
           }
         }
         .font(.headline)
