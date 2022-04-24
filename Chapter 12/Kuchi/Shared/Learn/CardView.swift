@@ -49,6 +49,16 @@ struct CardView: View {
     self.dragged = dragged
   }
   
+  func discardCard(to direction: DiscardedDirection) {
+    let width: CGFloat
+    switch direction {
+    case .left: width = -1000
+    case .right: width = 1000
+    }
+    offset = .init(width: width, height: 0)
+    dragged(flashCard, direction)
+  }
+  
   var body: some View {
     let drag = DragGesture()
       .onChanged { offset = $0.translation }
