@@ -58,6 +58,7 @@ struct FlightSearchDetails: View {
           Button("Rebook Flight") {
             rebookAlert = true
           }
+          .frame(height: 44.0)
           // 1
           .alert("Contact Your Airline", isPresented: $rebookAlert) {
             // 2
@@ -79,6 +80,7 @@ struct FlightSearchDetails: View {
               )
             showCheckIn = true
           }
+          .frame(height: 44.0)
           // 1
           .confirmationDialog("Check In", isPresented: $showCheckIn, presenting: checkInFlight) { checkIn in
             // 2
@@ -102,6 +104,7 @@ struct FlightSearchDetails: View {
         Button("On-Time History") {
           showFlightHistory.toggle()
         }
+        .frame(height: 44.0)
         .sheet(isPresented: $showFlightHistory) {
           FlightTimeHistory(flight: flight)
         }
