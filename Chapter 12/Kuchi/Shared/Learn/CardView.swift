@@ -39,6 +39,7 @@ struct CardView: View {
   @State var revealed = false
   @State var offset: CGSize = .zero
   @GestureState var isLongPressed = false
+  @AccessibilityFocusState var isQuestionFocused: Bool
   
   typealias CardDrag = (_ card: FlashCard, _ direction: DiscardedDirection) -> Void
   let dragged: CardDrag
@@ -80,37 +81,65 @@ struct CardView: View {
       }
       .simultaneously(with: drag)
     
-    return ZStack {
-      Rectangle()
-        .fill(cardColor)
-        .frame(width: 320, height: 210)
-        .cornerRadius(12)
-      VStack {
-        Spacer()
-        Text(flashCard.card.question)
-          .font(.largeTitle)
-          .foregroundColor(.white)
-        if revealed {
-          Text(flashCard.card.answer)
-            .font(.caption)
+    return VStack {
+      ZStack {
+        Rectangle()
+          .fill(cardColor)
+          .frame(width: 320, height: 210)
+          .cornerRadius(12)
+        VStack {
+          Spacer()
+          Text(flashCard.card.question)
+            .font(.largeTitle)
             .foregroundColor(.white)
+          if revealed {
+            Text(flashCard.card.answer)
+              .font(.caption)
+              .foregroundColor(.white)
+          }
+          Spacer()
         }
-        Spacer()
+      }
+      .shadow(radius: 8)
+      .frame(width: 320, height: 210)
+      .animation(.spring(), value: offset)
+      .gesture(longPress)
+      .scaleEffect(isLongPressed ? 1.1 : 1)
+      .animation(.easeInOut(duration: 0.3), value: isLongPressed)
+      .simultaneousGesture(TapGesture()
+        .onEnded {
+          withAnimation(.easeIn, {
+            revealed = !revealed
+          })
+        })
+      .offset(offset)
+      
+      if UIAccessibility.isVoiceOverRunning {
+        HStack {
+          Button { discardCard(to: .left) } label: {
+            Image(systemName: "checkmark.circle.fill")
+              .foregroundColor(.green)
+              .accessibilityLabel("Remembered")
+          }
+          Spacer()
+          Button { isQuestionFocused = true } label: {
+            Image(systemName: "questionmark.circle.fill")
+              .accessibilityLabel("Read question")
+          }
+          Spacer()
+          Button { discardCard(to: .right) } label: {
+            Image(systemName: "xmark.circle.fill")
+              .foregroundColor(.red)
+              .accessibilityLabel("Forgot")
+          }
+        }
+        .padding(5)
+        .font(.largeTitle)
+        .offset(self.offset)
+      } else {
+        EmptyView()
       }
     }
-    .shadow(radius: 8)
-    .frame(width: 320, height: 210)
-    .animation(.spring(), value: offset)
-    .gesture(longPress)
-    .scaleEffect(isLongPressed ? 1.1 : 1)
-    .animation(.easeInOut(duration: 0.3), value: isLongPressed)
-    .simultaneousGesture(TapGesture()
-              .onEnded {
-      withAnimation(.easeIn, {
-        revealed = !revealed
-      })
-    })
-    .offset(offset)
   }
 }
 
