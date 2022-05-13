@@ -32,19 +32,26 @@ struct SearchFlights: View {
   var flightData: [FlightInformation]
   @State private var date = Date()
   @State private var directionFilter: FlightDirection = .none
-
+  @State private var city = ""
+  
   var matchingFlights: [FlightInformation] {
     var matchingFlights = flightData
-
+    
     if directionFilter != .none {
       matchingFlights = matchingFlights.filter {
         $0.direction == directionFilter
       }
     }
-
+    
+    if !city.isEmpty {
+      matchingFlights = matchingFlights.filter {
+        $0.otherAirport.lowercased().contains(city.lowercased())
+      }
+    }
+    
     return matchingFlights
   }
-
+  
   var body: some View {
     ZStack {
       Image("background-view")
@@ -54,15 +61,18 @@ struct SearchFlights: View {
         Picker(
           selection: $directionFilter,
           label: Text("Flight Direction")) {
-          Text("All").tag(FlightDirection.none)
-          Text("Arrivals").tag(FlightDirection.arrival)
-          Text("Departures").tag(FlightDirection.departure)
+            Text("All").tag(FlightDirection.none)
+            Text("Arrivals").tag(FlightDirection.arrival)
+            Text("Departures").tag(FlightDirection.departure)
+          }
+          .background(Color.white)
+          .pickerStyle(SegmentedPickerStyle())
+        List(matchingFlights) { flight in
+          SearchResultRow(flight: flight)
         }
-        .background(Color.white)
-        .pickerStyle(SegmentedPickerStyle())
-        // Insert Results
         Spacer()
       }
+      .searchable(text: $city)
       .navigationBarTitle("Search Flights")
       .padding()
     }
