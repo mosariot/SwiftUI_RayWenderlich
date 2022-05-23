@@ -52,8 +52,9 @@ struct WelcomeView: View {
             isActive: $showNextFlight
           ) { }
         }
-        ScrollView {
-          VStack {
+        LazyVGrid(
+          columns: [GridItem(.fixed(160)), GridItem(.fixed(160))],
+          spacing: 15) {
             FlightStatusButton(flightInfo: flightInfo)
             SearchFlightsButton(flightInfo: flightInfo)
             AwardsButton()
@@ -62,14 +63,13 @@ struct WelcomeView: View {
               appEnvironment: appEnvironment,
               showNextFlight: $showNextFlight
             )
-          }.font(.title)
+          }
+          .font(.title)
           .foregroundColor(.white)
           .padding()
-        }
       }.navigationBarTitle("Mountain Airport")
-      // End Navigation View
     }.navigationViewStyle(StackNavigationViewStyle())
-    .environmentObject(appEnvironment)
+      .environmentObject(appEnvironment)
   }
 }
 
