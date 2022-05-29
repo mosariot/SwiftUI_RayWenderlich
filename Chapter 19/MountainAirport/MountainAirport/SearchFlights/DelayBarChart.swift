@@ -30,17 +30,18 @@ import SwiftUI
 
 struct DelayBarChart: View {
   var flight: FlightInformation
+  @State private var showBars = 0.0
 
   let minuteRange = CGFloat(75)
 
   func minuteLength(_ minutes: Int, proxy: GeometryProxy) -> CGFloat {
     let pointsPerMinute = proxy.size.width / minuteRange
-    return CGFloat(abs(minutes)) * pointsPerMinute
+    return CGFloat(abs(minutes)) * pointsPerMinute * showBars
   }
 
   func minuteOffset(_ minutes: Int, proxy: GeometryProxy) -> CGFloat {
     let pointsPerMinute = proxy.size.width / minuteRange
-    let offset = minutes < 0 ? 15 + minutes : 15
+    let offset = minutes < 0 ? 15 + minutes * Int(showBars) : 15
     return CGFloat(offset) * pointsPerMinute
   }
 
@@ -89,6 +90,10 @@ struct DelayBarChart: View {
               )
               .frame(width: minuteLength(history.timeDifference, proxy: proxy))
               .offset(x: minuteOffset(history.timeDifference, proxy: proxy))
+              .animation(
+                .easeOut.delay(0.5),
+                value: showBars
+              )
             ForEach(-1..<6) { val in
               Rectangle()
                 .stroke(val == 0 ? Color.white : Color.gray, lineWidth: 1.0)
@@ -102,6 +107,9 @@ struct DelayBarChart: View {
       .background(
         Color.white.opacity(0.2)
       )
+    }
+    .onAppear {
+      showBars = 1.0
     }
   }
 }
