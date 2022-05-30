@@ -30,18 +30,18 @@ import SwiftUI
 
 struct DelayBarChart: View {
   var flight: FlightInformation
-  @State private var showBars = 0.0
+  @State private var showBars = false
 
   let minuteRange = CGFloat(75)
 
   func minuteLength(_ minutes: Int, proxy: GeometryProxy) -> CGFloat {
     let pointsPerMinute = proxy.size.width / minuteRange
-    return CGFloat(abs(minutes)) * pointsPerMinute * showBars
+    return CGFloat(abs(minutes)) * pointsPerMinute
   }
 
   func minuteOffset(_ minutes: Int, proxy: GeometryProxy) -> CGFloat {
     let pointsPerMinute = proxy.size.width / minuteRange
-    let offset = minutes < 0 ? 15 + minutes * Int(showBars) : 15
+    let offset = minutes < 0 ? 15 + minutes : 15
     return CGFloat(offset) * pointsPerMinute
   }
 
@@ -72,6 +72,10 @@ struct DelayBarChart: View {
     let offset = CGFloat(minutes - minMinutes) * pointsPerMinute
     return offset
   }
+  
+  func barAnimation(_ barNumber: Int) -> Animation {
+    .easeInOut.delay(Double(barNumber) * 0.1)
+  }
 
   var body: some View {
     VStack {
@@ -88,10 +92,18 @@ struct DelayBarChart: View {
                   endPoint: .trailing
                 )
               )
-              .frame(width: minuteLength(history.timeDifference, proxy: proxy))
-              .offset(x: minuteOffset(history.timeDifference, proxy: proxy))
+              .frame(
+                width: showBars ?
+                  minuteLength(history.timeDifference, proxy: proxy) :
+                  0
+              )
+              .offset(
+                x: showBars ?
+                  minuteOffset(history.timeDifference, proxy: proxy) :
+                  minuteOffset(0, proxy: proxy)
+              )
               .animation(
-                .easeOut.delay(0.5),
+                barAnimation(history.day),
                 value: showBars
               )
             ForEach(-1..<6) { val in
@@ -109,7 +121,7 @@ struct DelayBarChart: View {
       )
     }
     .onAppear {
-      showBars = 1.0
+      showBars = true
     }
   }
 }
