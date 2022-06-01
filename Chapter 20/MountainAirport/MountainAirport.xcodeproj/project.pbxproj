@@ -11,6 +11,7 @@
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
 		18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C922AD944400AE281E /* Preview Assets.xcassets */; };
 		18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D775DA22AD963800AE281E /* LaunchScreen.storyboard */; };
+		9FAA89D12847EC36009CDDB5 /* GenericTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */; };
 		A91710782565C96800844634 /* TimelineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91710772565C96800844634 /* TimelineButton.swift */; };
 		A917107D2565C9A300844634 /* FlightTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917107C2565C9A300844634 /* FlightTimelineView.swift */; };
 		A9289D2726EE9BB500299CE7 /* HighlightActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9289D2626EE9BB500299CE7 /* HighlightActionView.swift */; };
@@ -61,6 +62,7 @@
 		18D775C922AD944400AE281E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D775CE22AD944400AE281E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D775DE22AD96B400AE281E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTimeline.swift; sourceTree = "<group>"; };
 		A91710772565C96800844634 /* TimelineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineButton.swift; sourceTree = "<group>"; };
 		A917107C2565C9A300844634 /* FlightTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTimelineView.swift; sourceTree = "<group>"; };
 		A9289D2626EE9BB500299CE7 /* HighlightActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightActionView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				A917107C2565C9A300844634 /* FlightTimelineView.swift */,
 				A9D8DFBC2565E823002F521E /* FlightCardView.swift */,
+				9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				A9CF24202515097D00EA887E /* FlightStatusBoard.swift in Sources */,
 				A952E09F254C891C004687A2 /* AwardsButton.swift in Sources */,
 				A9FD53B625544E6500AC7598 /* FlightTerminalMap.swift in Sources */,
+				9FAA89D12847EC36009CDDB5 /* GenericTimeline.swift in Sources */,
 				A9CB5E1D253A587F004253E8 /* FlightTimeHistory.swift in Sources */,
 				A9E462432509B44800128AB1 /* AwardInformation.swift in Sources */,
 				A9DA2758250BCF9200A2262A /* MountainAirport.swift in Sources */,
