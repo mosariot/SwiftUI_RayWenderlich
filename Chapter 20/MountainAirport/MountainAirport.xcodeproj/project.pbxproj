@@ -11,6 +11,7 @@
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
 		18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C922AD944400AE281E /* Preview Assets.xcassets */; };
 		18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D775DA22AD963800AE281E /* LaunchScreen.storyboard */; };
+		9F89F97128491A5000F42EE4 /* FlightMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F89F97028491A5000F42EE4 /* FlightMapView.swift */; };
 		9FAA89D12847EC36009CDDB5 /* GenericTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */; };
 		A91710782565C96800844634 /* TimelineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91710772565C96800844634 /* TimelineButton.swift */; };
 		A917107D2565C9A300844634 /* FlightTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917107C2565C9A300844634 /* FlightTimelineView.swift */; };
@@ -62,6 +63,7 @@
 		18D775C922AD944400AE281E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D775CE22AD944400AE281E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D775DE22AD96B400AE281E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F89F97028491A5000F42EE4 /* FlightMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapView.swift; sourceTree = "<group>"; };
 		9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTimeline.swift; sourceTree = "<group>"; };
 		A91710772565C96800844634 /* TimelineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineButton.swift; sourceTree = "<group>"; };
 		A917107C2565C9A300844634 /* FlightTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTimelineView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				A917107C2565C9A300844634 /* FlightTimelineView.swift */,
 				A9D8DFBC2565E823002F521E /* FlightCardView.swift */,
 				9FAA89D02847EC36009CDDB5 /* GenericTimeline.swift */,
+				9F89F97028491A5000F42EE4 /* FlightMapView.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				A91710782565C96800844634 /* TimelineButton.swift in Sources */,
 				A9B0B49325523009008990E6 /* DelayBarChart.swift in Sources */,
 				A98E3C51255596B200C1974E /* AwardGrid.swift in Sources */,
+				9F89F97128491A5000F42EE4 /* FlightMapView.swift in Sources */,
 				A9289D2726EE9BB500299CE7 /* HighlightActionView.swift in Sources */,
 				A92AE318252785770076F3B9 /* DateExtensions.swift in Sources */,
 				A93AD0F6253364B400182D1B /* AwardDetails.swift in Sources */,
