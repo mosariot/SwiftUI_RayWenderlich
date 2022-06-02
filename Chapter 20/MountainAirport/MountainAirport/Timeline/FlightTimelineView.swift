@@ -36,9 +36,9 @@ struct FlightTimelineView: View {
       Image("background-view")
         .resizable()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-      GenericTimeline(events: flights, content: { flight in
+      GenericTimeline(events: flights, timeProperty: \.localTime) { flight in
         FlightCardView(flight: flight)
-      })
+      }
       .padding()
     }
     .foregroundColor(.white)

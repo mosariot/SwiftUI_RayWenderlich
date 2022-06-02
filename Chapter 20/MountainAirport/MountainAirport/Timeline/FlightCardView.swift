@@ -120,6 +120,15 @@ struct FlightCardView: View {
         ArrivalTimeView(flight: flight)
       }
     }
+    .padding()
+    .background(.gray.opacity(0.3))
+    .clipShape(
+      RoundedRectangle(cornerRadius: 20)
+    )
+    .overlay(
+      RoundedRectangle(cornerRadius: 20)
+        .stroke()
+    )
   }
 }
 
