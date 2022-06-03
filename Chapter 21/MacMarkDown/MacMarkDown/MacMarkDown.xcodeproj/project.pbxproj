@@ -12,17 +12,20 @@
 		9FED2D682849B30000EA6726 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED2D672849B30000EA6726 /* ContentView.swift */; };
 		9FED2D6A2849B30100EA6726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FED2D692849B30100EA6726 /* Assets.xcassets */; };
 		9FED2D6D2849B30100EA6726 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FED2D6C2849B30100EA6726 /* Preview Assets.xcassets */; };
+		9FED2D772849B95500EA6726 /* MarkdownKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FED2D762849B95500EA6726 /* MarkdownKit */; };
+		9FED2D792849BA6D00EA6726 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED2D782849BA6D00EA6726 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9FED2D602849B30000EA6726 /* MacMarkDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacMarkDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FED2D632849B30000EA6726 /* MacMarkDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMarkDownApp.swift; sourceTree = "<group>"; };
 		9FED2D652849B30000EA6726 /* MacMarkDownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMarkDownDocument.swift; sourceTree = "<group>"; };
-		9FED2D672849B30000EA6726 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 2; };
+		9FED2D672849B30000EA6726 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		9FED2D692849B30100EA6726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FED2D6C2849B30100EA6726 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FED2D6E2849B30100EA6726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FED2D6F2849B30100EA6726 /* MacMarkDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacMarkDown.entitlements; sourceTree = "<group>"; };
+		9FED2D782849BA6D00EA6726 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FED2D772849B95500EA6726 /* MarkdownKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +66,7 @@
 				9FED2D6E2849B30100EA6726 /* Info.plist */,
 				9FED2D6F2849B30100EA6726 /* MacMarkDown.entitlements */,
 				9FED2D6B2849B30100EA6726 /* Preview Content */,
+				9FED2D782849BA6D00EA6726 /* WebView.swift */,
 			);
 			path = MacMarkDown;
 			sourceTree = "<group>";
@@ -90,6 +95,9 @@
 			dependencies = (
 			);
 			name = MacMarkDown;
+			packageProductDependencies = (
+				9FED2D762849B95500EA6726 /* MarkdownKit */,
+			);
 			productName = MacMarkDown;
 			productReference = 9FED2D602849B30000EA6726 /* MacMarkDown.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 9FED2D572849B30000EA6726;
+			packageReferences = (
+				9FED2D752849B95500EA6726 /* XCRemoteSwiftPackageReference "swift-markdownkit" */,
+			);
 			productRefGroup = 9FED2D612849B30000EA6726 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -145,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FED2D642849B30000EA6726 /* MacMarkDownApp.swift in Sources */,
+				9FED2D792849BA6D00EA6726 /* WebView.swift in Sources */,
 				9FED2D662849B30000EA6726 /* MacMarkDownDocument.swift in Sources */,
 				9FED2D682849B30000EA6726 /* ContentView.swift in Sources */,
 			);
@@ -344,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9FED2D752849B95500EA6726 /* XCRemoteSwiftPackageReference "swift-markdownkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objecthub/swift-markdownkit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9FED2D762849B95500EA6726 /* MarkdownKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FED2D752849B95500EA6726 /* XCRemoteSwiftPackageReference "swift-markdownkit" */;
+			productName = MarkdownKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9FED2D582849B30000EA6726 /* Project object */;
 }

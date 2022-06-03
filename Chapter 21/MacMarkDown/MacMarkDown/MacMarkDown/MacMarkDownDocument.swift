@@ -7,22 +7,28 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import MarkdownKit
 
 extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
+    static var markdownText: UTType {
+        UTType(importedAs: "net.daringfireball.markdown")
     }
 }
 
 struct MacMarkDownDocument: FileDocument {
     var text: String
-
-    init(text: String = "Hello, world!") {
+    
+    var html: String {
+        let markdown = MarkdownParser.standard.parse(text)
+        return HtmlGenerator.standard.generate(doc: markdown)
+    }
+    
+    init(text: String = "# Hello, MacMarkDown!") {
         self.text = text
     }
-
-    static var readableContentTypes: [UTType] { [.exampleText] }
-
+    
+    static var readableContentTypes: [UTType] { [.markdownText] }
+    
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
               let string = String(data: data, encoding: .utf8)
