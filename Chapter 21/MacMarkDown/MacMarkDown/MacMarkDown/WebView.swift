@@ -9,7 +9,20 @@ import SwiftUI
 import WebKit
 
 struct WebView: NSViewRepresentable {
+    @AppStorage("styleSheet") var styleSheet: StyleSheet = .raywenderlich
     var html: String
+    var formattedHtml: String {
+        """
+          <html>
+          <head>
+             <link href="\(styleSheet).css" rel="stylesheet"
+          </head>
+          <body>
+             \(html)
+          </body>
+          </html>
+        """
+    }
     
     init(html: String) {
         self.html = html
@@ -20,6 +33,6 @@ struct WebView: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: NSViewType, context: Context) {
-        nsView.loadHTMLString(html, baseURL: Bundle.main.resourceURL)
+        nsView.loadHTMLString(formattedHtml, baseURL: Bundle.main.resourceURL)
     }
 }
