@@ -15,6 +15,7 @@
 		9F61DD9B284B260900A13CDD /* solarizeddark.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F61DD95284B260900A13CDD /* solarizeddark.css */; };
 		9F61DD9C284B260900A13CDD /* lopash.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F61DD96284B260900A13CDD /* lopash.css */; };
 		9F61DD9D284B260900A13CDD /* raywenderlich.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F61DD97284B260900A13CDD /* raywenderlich.css */; };
+		9F61DD9F284CFCF200A13CDD /* ToolbarCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61DD9E284CFCF200A13CDD /* ToolbarCommands.swift */; };
 		9FED2D642849B30000EA6726 /* MacMarkDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED2D632849B30000EA6726 /* MacMarkDownApp.swift */; };
 		9FED2D662849B30000EA6726 /* MacMarkDownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED2D652849B30000EA6726 /* MacMarkDownDocument.swift */; };
 		9FED2D682849B30000EA6726 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED2D672849B30000EA6726 /* ContentView.swift */; };
@@ -33,6 +34,7 @@
 		9F61DD95284B260900A13CDD /* solarizeddark.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = solarizeddark.css; sourceTree = "<group>"; };
 		9F61DD96284B260900A13CDD /* lopash.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = lopash.css; sourceTree = "<group>"; };
 		9F61DD97284B260900A13CDD /* raywenderlich.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = raywenderlich.css; sourceTree = "<group>"; };
+		9F61DD9E284CFCF200A13CDD /* ToolbarCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarCommands.swift; sourceTree = "<group>"; };
 		9FED2D602849B30000EA6726 /* MacMarkDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacMarkDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FED2D632849B30000EA6726 /* MacMarkDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMarkDownApp.swift; sourceTree = "<group>"; };
 		9FED2D652849B30000EA6726 /* MacMarkDownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMarkDownDocument.swift; sourceTree = "<group>"; };
@@ -60,11 +62,11 @@
 			isa = PBXGroup;
 			children = (
 				9F61DD92284B260900A13CDD /* StyleSheet.swift */,
-				9F61DD93284B260900A13CDD /* ulysses.css */,
 				9F61DD94284B260900A13CDD /* github.css */,
-				9F61DD95284B260900A13CDD /* solarizeddark.css */,
 				9F61DD96284B260900A13CDD /* lopash.css */,
 				9F61DD97284B260900A13CDD /* raywenderlich.css */,
+				9F61DD95284B260900A13CDD /* solarizeddark.css */,
+				9F61DD93284B260900A13CDD /* ulysses.css */,
 			);
 			path = StyleSheets;
 			sourceTree = "<group>";
@@ -98,6 +100,7 @@
 				9FED2D6B2849B30100EA6726 /* Preview Content */,
 				9F61DD8D284B204200A13CDD /* Settings.swift */,
 				9F61DD91284B260900A13CDD /* StyleSheets */,
+				9F61DD9E284CFCF200A13CDD /* ToolbarCommands.swift */,
 				9FED2D782849BA6D00EA6726 /* WebView.swift */,
 			);
 			path = MacMarkDown;
@@ -197,6 +200,7 @@
 				9F61DD90284B240D00A13CDD /* MenuCommands.swift in Sources */,
 				9FED2D662849B30000EA6726 /* MacMarkDownDocument.swift in Sources */,
 				9FED2D682849B30000EA6726 /* ContentView.swift in Sources */,
+				9F61DD9F284CFCF200A13CDD /* ToolbarCommands.swift in Sources */,
 				9F61DD8E284B204200A13CDD /* Settings.swift in Sources */,
 				9F61DD98284B260900A13CDD /* StyleSheet.swift in Sources */,
 			);
