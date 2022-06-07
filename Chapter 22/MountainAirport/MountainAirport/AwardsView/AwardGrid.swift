@@ -38,24 +38,11 @@ struct AwardGrid: View {
     Section(
       header: Text(title)
         .font(.title)
-        .foregroundColor(.white)
     ) {
       ForEach(awards, id: \.self) { award in
-        NavigationLink(destination: AwardDetails(award: award)) {
-          AwardCardView(award: award)
-            .foregroundColor(.black)
-            .aspectRatio(0.67, contentMode: .fit)
-            .onTapGesture {
-              withAnimation {
-                selected = award
-              }
-            }
-            .matchedGeometryEffect(
-              id: award.hashValue,
-              in: namespace,
-              anchor: .topLeading
-            )
-        }
+        AwardCardView(award: award)
+          .foregroundColor(.black)
+          .aspectRatio(0.67, contentMode: .fit)
       }
     }
   }

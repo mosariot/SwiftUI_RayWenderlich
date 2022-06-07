@@ -34,34 +34,43 @@ import SwiftUI
 
 struct AwardCardView: View {
   var award: AwardInformation
+  @State private var isPresented = false
 
   var body: some View {
-    VStack {
-      Image(award.imageName)
-        .shadow(radius: 10)
-      Text(award.title)
-        .font(.title3)
-      Text(award.description)
-        .font(.footnote)
-      AwardStars(stars: award.stars)
-        .foregroundColor(.yellow)
-        .shadow(color: .black, radius: 5)
-        .offset(x: -5.0)
-      Spacer()
+    Button(action: {
+      isPresented.toggle()
+    }, label: {
+      VStack {
+        Image(award.imageName)
+          .shadow(radius: 10)
+        Text(award.title)
+          .font(.title3)
+        Text(award.description)
+          .font(.footnote)
+        AwardStars(stars: award.stars)
+          .foregroundColor(.yellow)
+          .shadow(color: .black, radius: 5)
+          .offset(x: -5.0)
+        Spacer()
+      }
+      .padding(10.0)
+      .background(
+        LinearGradient(
+          gradient: Gradient(
+            colors: [Color.white, Color(red: 0.0, green: 0.5, blue: 1.0)]
+          ),
+          startPoint: .bottomLeading,
+          endPoint: .topTrailing)
+      )
+      .background(Color.white)
+      .saturation(award.awarded ? 1.0 : 0.0)
+      .opacity(award.awarded ? 1.0 : 0.3)
+      .clipShape(RoundedRectangle(cornerRadius: 25.0))
+    })
+    .buttonStyle(.plain)
+    .sheet(isPresented: $isPresented) {
+      AwardDetails(award: award)
     }
-    .padding(10.0)
-    .background(
-      LinearGradient(
-        gradient: Gradient(
-          colors: [Color.white, Color(red: 0.0, green: 0.5, blue: 1.0)]
-        ),
-        startPoint: .bottomLeading,
-        endPoint: .topTrailing)
-    )
-    .background(Color.white)
-    .saturation(award.awarded ? 1.0 : 0.0)
-    .opacity(award.awarded ? 1.0 : 0.3)
-    .clipShape(RoundedRectangle(cornerRadius: 25.0))
   }
 }
 

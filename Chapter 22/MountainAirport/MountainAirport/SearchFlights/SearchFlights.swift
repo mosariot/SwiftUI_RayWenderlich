@@ -76,7 +76,7 @@ struct SearchFlights: View {
             Text("Departures").tag(FlightDirection.departure)
           }
           .frame(maxWidth: 300)
-          .background(.white)
+          .foregroundColor(.primary)
           .pickerStyle(.segmented)
         TextField(" Search cities", text: $city)
           .textFieldStyle(RoundedBorderTextFieldStyle())
