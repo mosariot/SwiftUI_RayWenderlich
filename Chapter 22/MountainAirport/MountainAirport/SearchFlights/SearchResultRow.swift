@@ -35,7 +35,7 @@ import SwiftUI
 struct SearchResultRow: View {
   var flight: FlightInformation
   @State private var isPresented = false
-
+  
   var body: some View {
     Button(
       action: {
@@ -43,18 +43,19 @@ struct SearchResultRow: View {
       }, label: {
         FlightSearchSummary(flight: flight)
       })
-      .sheet(
-        isPresented: $isPresented,
-        onDismiss: {
-          print("Modal dismissed. State now: \(isPresented)")
-        },
-        content: {
-          FlightSearchDetails(
-            flight: flight,
-            showModal: $isPresented
-          )
-        }
-      )
+    .buttonStyle(.plain)
+    .sheet(
+      isPresented: $isPresented,
+      onDismiss: {
+        print("Modal dismissed. State now: \(isPresented)")
+      },
+      content: {
+        FlightSearchDetails(
+          flight: flight,
+          showModal: $isPresented
+        )
+      }
+    )
   }
 }
 

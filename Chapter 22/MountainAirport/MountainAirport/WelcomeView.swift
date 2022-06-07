@@ -33,90 +33,80 @@
 import SwiftUI
 
 struct WelcomeView: View {
-  @StateObject var flightInfo = FlightData()
   @State var showNextFlight = false
   @StateObject var appEnvironment = AppEnvironment()
+  @SceneStorage("displayState") var displayState: DisplayState = .none
+  @SceneStorage("lastViewedFlightID") var lastViewedFlightID: Int?
+  
+  var flightInfo: FlightData
+  
+  var lastViewedFlight: FlightInformation? {
+    if let id = lastViewedFlightID {
+      return flightInfo.getFlightById(id)
+    }
+    return nil
+  }
 
   var body: some View {
-    NavigationView {
-      ZStack(alignment: .topLeading) {
-        Image("welcome-background")
-          .resizable()
-          .frame(height: 250)
-        if
-          let id = appEnvironment.lastFlightId,
-          let lastFlight = flightInfo.getFlightById(id) {
-          NavigationLink(
-            destination: FlightDetails(flight: lastFlight),
-            isActive: $showNextFlight
-          ) { }
+    VStack {
+      WelcomeAnimation()
+        .foregroundColor(.white)
+        .frame(height: 40)
+        .padding()
+      
+      Button {
+        displayState = .flightBoard
+      } label: {
+        FlightStatusButton()
+      }
+      .buttonStyle(.plain)
+      
+      Button {
+        displayState = .searchFlights
+      } label: {
+        SearchFlightsButton()
+      }
+      .buttonStyle(.plain)
+      
+      Button {
+        displayState = .awards
+      } label: {
+        AwardsButton()
+      }
+      .buttonStyle(.plain)
+      
+      Button {
+        displayState = .timeline
+      } label: {
+        TimelineButton()
+      }
+      .buttonStyle(.plain)
+      
+      if let lastFlight = lastViewedFlight {
+        Button {
+          displayState  = .lastFlight
+          showNextFlight = true
+        } label: {
+          LastViewedButton(name: lastFlight.flightName)
         }
-        ScrollView {
-          WelcomeAnimation()
-            .foregroundColor(.white)
-            .frame(height: 40)
-            .padding()
-          LazyVGrid(
-            columns: [
-              GridItem(.fixed(160)),
-              GridItem(.fixed(160))
-            ], spacing: 15
-          ) {
-            NavigationLink(
-              destination: FlightStatusBoard(
-                flights: flightInfo.getDaysFlights(Date()))
-            ) {
-              FlightStatusButton()
-            }
-            NavigationLink(
-              destination: SearchFlights(
-                flightData: flightInfo.flights
-              )
-            ) {
-              SearchFlightsButton()
-            }
-            NavigationLink(
-              destination: AwardsView()
-            ) {
-              AwardsButton()
-            }
-            NavigationLink(
-              destination: FlightTimelineView(
-                flights: flightInfo.flights.filter {
-                  Calendar.current.isDate(
-                    $0.localTime,
-                    inSameDayAs: Date()
-                  )
-                }
-              )
-            ) {
-              TimelineButton()
-            }
-            if
-              let id = appEnvironment.lastFlightId,
-              let lastFlight = flightInfo.getFlightById(id) {
-              // swiftlint:disable multiple_closures_with_trailing_closure
-              Button(action: {
-                showNextFlight = true
-              }) {
-                LastViewedButton(name: lastFlight.flightName)
-              }
-              // swiftlint:enable multiple_closures_with_trailing_closure
-            }
-            Spacer()
-          }.font(.title)
-          .foregroundColor(.white)
-          .padding()
-        }
-      }.navigationTitle("Mountain Airport")
-      // End Navigation View
-    }.navigationViewStyle(StackNavigationViewStyle())
+        .buttonStyle(.plain)
+      }
+      Spacer()
+    }
+    .padding()
+    .frame(minWidth: 190, idealWidth: 190, maxWidth: 190, minHeight: 800, idealHeight: 800, maxHeight: .infinity)
+    .background(
+      Image("welcome-background")
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+    )
     .environmentObject(appEnvironment)
   }
 }
 
 struct WelcomeView_Previews: PreviewProvider {
   static var previews: some View {
-    WelcomeView()
+    WelcomeView(flightInfo: FlightData())
+      .previewLayout(.fixed(width: 190, height: 800))
   }
 }

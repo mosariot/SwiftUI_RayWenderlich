@@ -39,7 +39,7 @@ struct FlightSearchDetails: View {
   @State private var checkInFlight: CheckInInfo?
   @State private var showFlightHistory = false
   @State private var showCheckIn = false
-  @EnvironmentObject var lastFlightInfo: AppEnvironment
+  @SceneStorage("lastViewedFlightID") var lastViewedFlightID: Int?
 
   var body: some View {
     ZStack {
@@ -49,6 +49,7 @@ struct FlightSearchDetails: View {
       VStack(alignment: .leading) {
         HStack {
           FlightDetailHeader(flight: flight)
+            .foregroundColor(.white)
           Spacer()
           Button("Close") {
             showModal = false
@@ -102,21 +103,23 @@ struct FlightSearchDetails: View {
         Button("On-Time History") {
           showFlightHistory.toggle()
         }
-        .sheet(isPresented: $showFlightHistory) {
+        .popover(isPresented: $showFlightHistory) {
           FlightTimeHistory(flight: flight)
         }
         FlightInfoPanel(flight: flight)
           .padding()
+          .foregroundColor(.white)
           .background(
             RoundedRectangle(cornerRadius: 20.0)
               .opacity(0.3)
           )
         Spacer()
-      }.foregroundColor(.white)
+      }
       .padding()
     }.onAppear {
-      lastFlightInfo.lastFlightId = flight.id
+      lastViewedFlightID = flight.id
     }
+    .frame(minHeight: 500, maxHeight: 600)
     .interactiveDismissDisabled()
   }
 }

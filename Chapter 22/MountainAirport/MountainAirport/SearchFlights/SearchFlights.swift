@@ -70,13 +70,14 @@ struct SearchFlights: View {
       VStack {
         Picker(
           selection: $directionFilter,
-          label: Text("Flight Direction")) {
-          Text("All").tag(FlightDirection.none)
-          Text("Arrivals").tag(FlightDirection.arrival)
-          Text("Departures").tag(FlightDirection.departure)
-        }
-        .background(Color.white)
-        .pickerStyle(SegmentedPickerStyle())
+          label: EmptyView()) {
+            Text("All").tag(FlightDirection.none)
+            Text("Arrivals").tag(FlightDirection.arrival)
+            Text("Departures").tag(FlightDirection.departure)
+          }
+          .frame(maxWidth: 300)
+          .background(.white)
+          .pickerStyle(.segmented)
         TextField(" Search cities", text: $city)
           .textFieldStyle(RoundedBorderTextFieldStyle())
         List {
@@ -110,7 +111,7 @@ struct SearchFlights: View {
             }
           }
         )
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.inset)
         Spacer()
       }
       .searchable(text: $city, prompt: "City Name") {
@@ -137,7 +138,7 @@ struct SearchFlights: View {
           }
         }
       }
-      .navigationBarTitle("Search Flights")
+      .navigationTitle("Search Flights")
       .padding()
     }
   }
